@@ -1,0 +1,102 @@
+================================================================================
+FAJRACCT SECURED LMS - INSTALLATION GUIDE
+================================================================================
+
+QUICK START FOR CPANEL DEPLOYMENT
+================================================================================
+
+1. CREATE DATABASE
+   - Login to cPanel
+   - Go to "MySQL Databases"
+   - Create new database (e.g., username_fajracct)
+   - Create database user with strong password
+   - Add user to database with ALL PRIVILEGES
+   - Note down: database name, username, and password
+
+2. UPLOAD FILES
+   - Upload fajracct-lms-php.zip to cPanel File Manager
+   - Extract to public_html (or subdirectory)
+   - Move all files from extracted folder to root
+
+3. CONFIGURE DATABASE
+   - Edit config/database.php
+   - Update these lines:
+     
+     define('DB_HOST', 'localhost');
+     define('DB_NAME', 'your_database_name');
+     define('DB_USER', 'your_database_user');
+     define('DB_PASS', 'your_database_password');
+
+4. IMPORT DATABASE
+   - Go to phpMyAdmin in cPanel
+   - Select your database
+   - Click "Import" tab
+   - Choose config/schema.sql
+   - Click "Go"
+
+5. CONFIGURE SITE
+   - Edit config/config.php
+   - Update these lines:
+     
+     define('SITE_URL', 'https://yourdomain.com');
+     define('SITE_EMAIL', 'noreply@yourdomain.com');
+
+6. SET PERMISSIONS
+   - Right-click uploads folder
+   - Change permissions to 755 or 777
+
+7. TEST INSTALLATION
+   - Visit your domain
+   - You should see the landing page
+   - Login with:
+     Email: admin@fajracct.com
+     Password: admin123
+   
+   *** CHANGE ADMIN PASSWORD IMMEDIATELY! ***
+
+================================================================================
+IMPORTANT SECURITY STEPS
+================================================================================
+
+After installation:
+
+1. Change admin password immediately
+2. Update all API keys in config/config.php:
+   - Email (SMTP)
+   - SMS gateway
+   - Payment gateways (bKash, Nagad)
+   - Video hosting (Vimeo/Bunny.net)
+   
+3. For production:
+   - Edit config/config.php
+   - Change these lines:
+     error_reporting(0);
+     ini_set('display_errors', 0);
+   
+4. Enable HTTPS:
+   - Uncomment HTTPS redirect in .htaccess
+
+================================================================================
+TROUBLESHOOTING
+================================================================================
+
+Problem: "Database connection failed"
+Solution: Check database credentials in config/database.php
+
+Problem: "Permission denied" when uploading
+Solution: Set uploads folder to 755 or 777 permissions
+
+Problem: White screen / blank page
+Solution: Check PHP error logs, enable display_errors temporarily
+
+Problem: Email not sending
+Solution: Configure SMTP settings in config/config.php
+
+================================================================================
+SUPPORT
+================================================================================
+
+For support, visit: https://fajracct.com/support
+Email: support@fajracct.com
+
+================================================================================
